@@ -5,7 +5,7 @@ public class Main {
         int numberOfGuests;
 
         while (true) {
-            System.out.println("На скольких человек необходимо разделить счёт.: ");
+            System.out.println("На скольких человек необходимо разделить счёт?");
             if (scanner.hasNextInt()) {
                 numberOfGuests = scanner.nextInt();
                 if (numberOfGuests == 1) {
@@ -22,7 +22,7 @@ public class Main {
         }
 
         Calculator calculator = new Calculator();
-        calculator.run();
+        calculator.makeBasketProducts();
 
         double totalCost = calculator.getTotalCost();
         double costPerGuest = Math.round(totalCost / numberOfGuests * 100.0) / 100.0;

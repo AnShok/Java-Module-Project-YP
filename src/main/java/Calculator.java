@@ -1,14 +1,13 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Calculator {
-    private final Product[] products;
-    private int numProducts;
+    private final ArrayList<Product> products;
     private double totalCost;
 
 
     public Calculator() {
-        products = new Product[100];
-        numProducts = 0;
+        products = new ArrayList<>();
         totalCost = 0;
     }
 
@@ -35,26 +34,25 @@ public class Calculator {
 
         Product product = new Product(name, price);
         totalCost += price;
-        products[numProducts] = product;
-        numProducts++;
+        products.add(product);
 
         System.out.println("Товар успешно добавлен!");
     }
 
     public void printProducts() {
-        if (numProducts == 0) {
+        if (products.size() == 0) {
             System.out.println("Корзина пуста");
             return;
         }
         System.out.println("Список добавленных товаров:");
-        for (int i = 0; i < numProducts; i++) {
-            String formattedPrice = Formatter.formatTotalCost(products[i].getPrice());
-            System.out.println((i+1) + ". " + products[i].getName() + " - " + formattedPrice);
+        for (int i = 0; i < products.size(); i++) {
+            String formattedPrice = Formatter.formatTotalCost(products.get(i).getPrice());
+            System.out.println((i+1) + ". " + products.get(i).getName() + " - " + formattedPrice);
         }
         String formattedTotalCost = Formatter.formatTotalCost(totalCost);
         System.out.println("Общая стоимость товаров: " + formattedTotalCost);
     }
-    public void run() {
+    public void makeBasketProducts() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("Хотите добавить товар? (Введите Да или Завершить): ");
@@ -71,6 +69,7 @@ public class Calculator {
     }
 
     public double getTotalCost() {
+
         return totalCost;
     }
 }
